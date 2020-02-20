@@ -126,11 +126,11 @@ public class VentanaPokedex extends javax.swing.JFrame {
         imagenPokemon.setLayout(imagenPokemonLayout);
         imagenPokemonLayout.setHorizontalGroup(
             imagenPokemonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 270, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         imagenPokemonLayout.setVerticalGroup(
             imagenPokemonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 170, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         getContentPane().add(imagenPokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 270, 170));
@@ -141,7 +141,7 @@ public class VentanaPokedex extends javax.swing.JFrame {
                 izqActionPerformed(evt);
             }
         });
-        getContentPane().add(izq, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, 50, 50));
+        getContentPane().add(izq, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 50, 20));
 
         der.setText(">");
         der.addActionListener(new java.awt.event.ActionListener() {
@@ -149,10 +149,10 @@ public class VentanaPokedex extends javax.swing.JFrame {
                 derActionPerformed(evt);
             }
         });
-        getContentPane().add(der, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 430, 60, 50));
+        getContentPane().add(der, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 450, 50, 20));
 
         nombrePokemon.setForeground(new java.awt.Color(255, 0, 0));
-        getContentPane().add(nombrePokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 480, 110, 45));
+        getContentPane().add(nombrePokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 130, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pokedex.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
