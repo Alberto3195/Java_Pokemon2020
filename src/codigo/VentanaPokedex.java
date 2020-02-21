@@ -59,9 +59,9 @@ public class VentanaPokedex extends javax.swing.JFrame {
         dibujaElPokemonQueEstaEnLaPosicion(0);
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             conexion = DriverManager
-                    .getConnection("jdbc:mysql://192.168.192.130/test",
+                    .getConnection("jdbc:mysql://192.168.192.131/test",
                             "root",
                             "");
             estado = conexion.createStatement();
@@ -71,14 +71,14 @@ public class VentanaPokedex extends javax.swing.JFrame {
             //para ir cargandolo en el HashMap
             while (resultadoConsulta.next()) {
                 Pokemon p = new Pokemon();
-                p.ID = resultadoConsulta.getString("id");
-                p.Nombre = resultadoConsulta.getString("nombre");
-                p.Especie = resultadoConsulta.getString("especie");
-                p.Peso = resultadoConsulta.getDouble("peso");
+                p.id = resultadoConsulta.getString("id");
+                p.nombre = resultadoConsulta.getString("nombre");
+                p.especie = resultadoConsulta.getString("especie");
+                p.peso = resultadoConsulta.getString("peso");
+                p.tipo = resultadoConsulta.getString("tipo");
                 p.preEvolucion = resultadoConsulta.getString("preEvolucion");
                 p.posEvolucion = resultadoConsulta.getString("posEvolucion");
                 
-
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -118,6 +118,9 @@ public class VentanaPokedex extends javax.swing.JFrame {
         der = new javax.swing.JButton();
         nombrePokemon = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        descripcion = new javax.swing.JLabel();
+        altura = new javax.swing.JLabel();
+        peso = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -126,16 +129,15 @@ public class VentanaPokedex extends javax.swing.JFrame {
         imagenPokemon.setLayout(imagenPokemonLayout);
         imagenPokemonLayout.setHorizontalGroup(
             imagenPokemonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 270, Short.MAX_VALUE)
         );
         imagenPokemonLayout.setVerticalGroup(
             imagenPokemonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        getContentPane().add(imagenPokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 270, 170));
+        getContentPane().add(imagenPokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 270, 180));
 
-        izq.setText("<");
         izq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 izqActionPerformed(evt);
@@ -143,7 +145,6 @@ public class VentanaPokedex extends javax.swing.JFrame {
         });
         getContentPane().add(izq, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 50, 20));
 
-        der.setText(">");
         der.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 derActionPerformed(evt);
@@ -156,7 +157,16 @@ public class VentanaPokedex extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pokedex.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 570));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 570));
+
+        descripcion.setText("jLabel2");
+        getContentPane().add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 260, 120));
+
+        altura.setText("jLabel3");
+        getContentPane().add(altura, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 480, 110, 50));
+
+        peso.setText("jLabel4");
+        getContentPane().add(peso, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 480, 110, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -165,9 +175,13 @@ public class VentanaPokedex extends javax.swing.JFrame {
         dibujaElPokemonQueEstaEnLaPosicion(contador);
         Pokemon p = listaPokemon.get(String.valueOf(contador));
         if (p != null) {
-            nombrePokemon.setText(p.Nombre);
+            nombrePokemon.setText(p.nombre);
+            descripcion.setText(p.descripcion);
+            altura.setText(p.altura);
         } else {
             nombrePokemon.setText("NO HAY DATOS");
+            descripcion.setText("NO HAY DATOS");
+            altura.setText("NO HAY DATOS");
         }
         contador--;
         if (contador <= 0) {
@@ -180,9 +194,13 @@ public class VentanaPokedex extends javax.swing.JFrame {
         dibujaElPokemonQueEstaEnLaPosicion(contador);
         Pokemon p = listaPokemon.get(String.valueOf(contador));
         if (p != null) {
-            nombrePokemon.setText(p.Nombre);
+            nombrePokemon.setText(p.nombre);
+            descripcion.setText(p.descripcion);
+            altura.setText(p.altura);
         } else {
             nombrePokemon.setText("NO HAY DATOS");
+            descripcion.setText("NO HAY DATOS");
+            altura.setText("NO HAY DATOS");
         }
         contador++;
         if (contador >= 649) {
@@ -226,10 +244,13 @@ public class VentanaPokedex extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel altura;
     private javax.swing.JButton der;
+    private javax.swing.JLabel descripcion;
     private javax.swing.JPanel imagenPokemon;
     private javax.swing.JButton izq;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel nombrePokemon;
+    private javax.swing.JLabel peso;
     // End of variables declaration//GEN-END:variables
 }
