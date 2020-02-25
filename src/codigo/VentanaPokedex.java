@@ -13,6 +13,8 @@ import java.sql.Statement;
 import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.UIDefaults;
+import javax.swing.plaf.ColorUIResource;
 
 /**
  *
@@ -48,6 +50,15 @@ public class VentanaPokedex extends javax.swing.JFrame {
      */
     public VentanaPokedex() {
         initComponents();
+
+        Color bgColor = Color.GREEN;
+        UIDefaults defaults = new UIDefaults();
+        defaults.put("TextPane.background", new ColorUIResource(bgColor));
+        defaults.put("TextPane[Enabled].backgroundPainter", bgColor);
+        descripcion.putClientProperty("Nimbus.Overrides", defaults);
+        descripcion.putClientProperty("Nimbus.Overrides.InheritDefaults", true);
+        descripcion.setBackground(bgColor);
+
         try {
             imagen1 = ImageIO.read(getClass()
                     .getResource("/imagenes/black-white.png"));
@@ -96,14 +107,12 @@ public class VentanaPokedex extends javax.swing.JFrame {
         setTitle("Pokedex");
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/pokemoniconpng.png")).getImage());
 
-        
-        
         try {
             imagen1 = ImageIO.read(getClass().getResource("/imagenes/black-white.png"));
         } catch (IOException ex) {
 
         }
-        
+
         //Ponemos logo Pokemon
         ImageIcon miImagen = new ImageIcon((new ImageIcon(getClass().getResource("/imagenes/pokemon.png"))
                 .getImage()
@@ -144,6 +153,7 @@ public class VentanaPokedex extends javax.swing.JFrame {
     private void initComponents() {
 
         imagenPokemon = new javax.swing.JPanel();
+        descripcion = new javax.swing.JTextPane();
         izq = new javax.swing.JButton();
         der = new javax.swing.JButton();
         nombrePokemon = new javax.swing.JLabel();
@@ -164,6 +174,9 @@ public class VentanaPokedex extends javax.swing.JFrame {
         );
 
         getContentPane().add(imagenPokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 270, 180));
+
+        descripcion.setEditable(false);
+        getContentPane().add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 260, 120));
 
         izq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,9 +204,10 @@ public class VentanaPokedex extends javax.swing.JFrame {
 
     private void izqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_izqActionPerformed
         dibujaElPokemonQueEstaEnLaPosicion(contador);
-        Pokemon p = listaPokemon.get(String.valueOf(contador+1));
+        Pokemon p = listaPokemon.get(String.valueOf(contador + 1));
         if (p != null) {
             nombrePokemon.setText(p.nombre);
+            descripcion.setText(p.descripcion);
         } else {
             nombrePokemon.setText("NO HAY DATOS");
         }
@@ -206,9 +220,10 @@ public class VentanaPokedex extends javax.swing.JFrame {
     private void derActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_derActionPerformed
 
         dibujaElPokemonQueEstaEnLaPosicion(contador);
-        Pokemon p = listaPokemon.get(String.valueOf(contador+1));
+        Pokemon p = listaPokemon.get(String.valueOf(contador + 1));
         if (p != null) {
             nombrePokemon.setText(p.nombre);
+            descripcion.setText(p.descripcion);
         } else {
             nombrePokemon.setText("NO HAY DATOS");
         }
@@ -255,6 +270,7 @@ public class VentanaPokedex extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton der;
+    private javax.swing.JTextPane descripcion;
     private javax.swing.JPanel imagenPokemon;
     private javax.swing.JButton izq;
     private javax.swing.JLabel nombrePokemon;
