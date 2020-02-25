@@ -24,7 +24,7 @@ public class VentanaPokedex extends javax.swing.JFrame {
 
     BufferedImage buffer1 = null;
     Image imagen1 = null;
-    int contador = 1;
+    int contador = 0;
 
     Graphics2D g2, jpanelGraphics;
 
@@ -94,6 +94,8 @@ public class VentanaPokedex extends javax.swing.JFrame {
                 p.nombre = resultadoConsulta.getString("nombre");
                 p.altura = resultadoConsulta.getString("altura");
                 p.descripcion = resultadoConsulta.getString("descripcion");
+                p.peso = resultadoConsulta.getString("peso");
+                p.id = resultadoConsulta.getString("id");
                 listaPokemon.put(resultadoConsulta.getString("id"), p);
             }
         } catch (Exception e) {
@@ -152,8 +154,12 @@ public class VentanaPokedex extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        imagenPokemon = new javax.swing.JPanel();
         descripcion = new javax.swing.JTextPane();
+        imagenPokemon = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
+        peso = new javax.swing.JLabel();
+        altura = new javax.swing.JLabel();
         izq = new javax.swing.JButton();
         der = new javax.swing.JButton();
         nombrePokemon = new javax.swing.JLabel();
@@ -161,6 +167,9 @@ public class VentanaPokedex extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        descripcion.setEditable(false);
+        getContentPane().add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 260, 120));
 
         javax.swing.GroupLayout imagenPokemonLayout = new javax.swing.GroupLayout(imagenPokemon);
         imagenPokemon.setLayout(imagenPokemonLayout);
@@ -175,8 +184,11 @@ public class VentanaPokedex extends javax.swing.JFrame {
 
         getContentPane().add(imagenPokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 270, 180));
 
-        descripcion.setEditable(false);
-        getContentPane().add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 260, 120));
+        jLabel1.setText("ID");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 80, 50, 40));
+        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 70, 40));
+        getContentPane().add(peso, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 480, 100, 50));
+        getContentPane().add(altura, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 480, 110, 50));
 
         izq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,27 +215,31 @@ public class VentanaPokedex extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void izqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_izqActionPerformed
-        dibujaElPokemonQueEstaEnLaPosicion(contador);
-        Pokemon p = listaPokemon.get(String.valueOf(contador + 1));
+        Pokemon p = listaPokemon.get(String.valueOf(contador - 1));
         if (p != null) {
             nombrePokemon.setText(p.nombre);
             descripcion.setText(p.descripcion);
+            altura.setText(p.altura);
+            peso.setText(p.peso);
+            id.setText(p.id);
         } else {
             nombrePokemon.setText("NO HAY DATOS");
         }
         contador--;
         if (contador <= 0) {
-            contador = 0;
+            contador = 1;
         }
+        dibujaElPokemonQueEstaEnLaPosicion(contador - 1);
     }//GEN-LAST:event_izqActionPerformed
 
     private void derActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_derActionPerformed
-
-        dibujaElPokemonQueEstaEnLaPosicion(contador);
         Pokemon p = listaPokemon.get(String.valueOf(contador + 1));
         if (p != null) {
             nombrePokemon.setText(p.nombre);
             descripcion.setText(p.descripcion);
+            altura.setText(p.altura);
+            peso.setText(p.peso);
+            id.setText(p.id);
         } else {
             nombrePokemon.setText("NO HAY DATOS");
         }
@@ -231,6 +247,7 @@ public class VentanaPokedex extends javax.swing.JFrame {
         if (contador >= 649) {
             contador = 649;
         }
+        dibujaElPokemonQueEstaEnLaPosicion(contador - 1);
     }//GEN-LAST:event_derActionPerformed
 
     /**
@@ -269,11 +286,15 @@ public class VentanaPokedex extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel altura;
     private javax.swing.JButton der;
     private javax.swing.JTextPane descripcion;
+    private javax.swing.JLabel id;
     private javax.swing.JPanel imagenPokemon;
     private javax.swing.JButton izq;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel nombrePokemon;
+    private javax.swing.JLabel peso;
     private javax.swing.JLabel pokedex;
     // End of variables declaration//GEN-END:variables
 }
