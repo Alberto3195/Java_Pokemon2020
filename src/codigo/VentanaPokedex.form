@@ -34,7 +34,13 @@
                   <Component id="imagenPokemon" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="nombrePokemon" min="-2" pref="264" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="nombrePokemon" pref="264" max="32767" attributes="0"/>
+                      <Component id="descripcion" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="id" min="-2" pref="77" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="66" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -43,16 +49,21 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="imagenPokemon" min="-2" max="-2" attributes="0"/>
-                  <Component id="nombrePokemon" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="nombrePokemon" min="-2" pref="45" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="descripcion" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="izq" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                   <Component id="der" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                  <Component id="id" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="74" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -95,6 +106,10 @@
           <Color blue="0" green="0" red="ff" type="rgb"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="descripcion">
+    </Component>
+    <Component class="javax.swing.JLabel" name="id">
     </Component>
   </SubComponents>
 </Form>
